@@ -28,7 +28,7 @@
 			<img class="logo" src="${request.contextPath}/static/image/logo.png">
 	    	Groovy
 	  	</a>
-	    <a href="#" class="item">管理中心</a>
+	    <a href="${request.contextPath}/code/editor" class="item">Code编辑器</a>
 	    <#--
 	  	<div class="ui simple dropdown item">
 			父菜单下拉 <i class="dropdown icon"></i>
