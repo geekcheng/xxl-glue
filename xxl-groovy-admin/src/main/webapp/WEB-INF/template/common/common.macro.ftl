@@ -1,5 +1,6 @@
 <#macro commonStyle>
   	<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/plugins/semantic-ui/dist/semantic.min.css">
+  	<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/plugins/semantic-ui/dist/components/modal.min.css">
   	<style type="text/css">
 	body {
 		background-color: #FFFFFF;
@@ -20,10 +21,6 @@
   	</style>
 </#macro>
 
-<#macro commonScript>
-	
-</#macro>
-
 <#macro commonHeader>
 <div class="ui fixed inverted menu">
 	<div class="ui container">
@@ -31,7 +28,8 @@
 			<img class="logo" src="${request.contextPath}/static/image/logo.png">
 	    	Groovy
 	  	</a>
-	    <a href="#" class="item">首页</a>
+	    <a href="#" class="item">管理中心</a>
+	    <#--
 	  	<div class="ui simple dropdown item">
 			父菜单下拉 <i class="dropdown icon"></i>
 			<div class="menu">
@@ -50,8 +48,9 @@
 				<a class="item" href="#">子菜单E</a>
 			</div>
 		</div>
-		<a href="${request.contextPath}/login" class="item right">登陆</a>
-		<a href="#" class="item">注册</a>
+		-->
+		<a href="javascript:;" class="item right logoutBtn">注销</a>
+		<#--<a href="#" class="item">注册</a>-->
     </div>
 </div>
 </#macro>
@@ -84,82 +83,4 @@
 		</div>
 	</div>
 </div>
-</#macro>
-
-<#macro comAlert >
-	<!-- ComAlert.模态框Modal -->
-	<div class="modal fade" id="ComAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!--	<div class="modal-header"><h4 class="modal-title"><strong>提示:</strong></h4></div>	-->
-	         	<div class="modal-body"><div class="alert alert-success"></div></div>
-	         	<div class="modal-footer">
-	         		<div class="text-center" >
-	            		<button type="button" class="btn btn-default ok" data-dismiss="modal" >确认</button>
-	            	</div>
-	         	</div>
-			</div>
-		</div>
-	</div>
-	<!-- ComConfirm.模态框Modal -->
-	<div class="modal fade" id="ComConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-	         	<div class="modal-body"><div class="alert alert-success"></div></div>
-	         	<div class="modal-footer">
-	         		<div class="text-center" >
-	            		<button type="button" class="btn btn-primary ok" data-dismiss="modal" >确认</button>
-	            		<button type="button" class="btn btn-default cancel" data-dismiss="modal" >取消</button>
-	            	</div>
-	         	</div>
-			</div>
-		</div>
-	</div>
-	<script>
-		// 通用提示
-		var ComAlert = {
-			show:function(type, msg, callback){
-				// 弹框初始
-				if (type == 1) {
-					$('#ComAlert .alert').attr('class', 'alert alert-success');
-				} else {
-					$('#ComAlert .alert').attr('class', 'alert alert-warning');
-				}
-				$('#ComAlert .alert').html(msg);
-				$('#ComAlert').modal('show');
-				
-				$('#ComAlert .ok').click(function(){
-					$('#ComAlert').modal('hide');
-					if(typeof callback == 'function') {
-						callback();
-					}
-				});
-				
-				// $("#ComAlert").on('hide.bs.modal', function () {	});	// 监听关闭
-			}
-		};
-		// 通用确认弹框
-		var ComConfirm = {
-			show:function(msg, callback){
-				// 弹框初始
-				$('#ComConfirm .alert').attr('class', 'alert alert-warning');
-				$('#ComConfirm .alert').html(msg);
-				$('#ComConfirm').modal('show');
-				
-				$('#ComConfirm .ok').unbind("click");	// 解绑陈旧事件
-				$('#ComConfirm .ok').click(function(){
-					$('#ComConfirm').modal('hide');
-					if(typeof callback == 'function') {
-						callback();
-						return;
-					}
-				});
-				
-				$('#ComConfirm .cancel').click(function(){
-					$('#ComConfirm').modal('hide');
-					return;
-				});
-			}
-		};
-	</script>
 </#macro>

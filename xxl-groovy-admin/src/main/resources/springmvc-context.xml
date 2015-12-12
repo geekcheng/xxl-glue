@@ -40,12 +40,12 @@
 		<property name="order" value="0" />
 	</bean>
 	
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.xxl.controller.interceptor.PermissionInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
- 	<bean id="exceptionResolver" class="com.xxl.controller.resolver.WebExceptionResolver" /> -->
-	
+ 	<bean id="exceptionResolver" class="com.xxl.controller.resolver.WebExceptionResolver" />
+ 	
 </beans>
