@@ -24,11 +24,12 @@
 <#macro commonHeader>
 <div class="ui fixed inverted menu">
 	<div class="ui container">
-		<a href="#" class="header item">
+		<a href="${request.contextPath}/" class="header item">
 			<img class="logo" src="${request.contextPath}/static/image/logo.png">
 	    	Groovy
 	  	</a>
-	    <a href="#" class="item">管理中心</a>
+	    <a href="${request.contextPath}/code/codeEditor" class="item">Code编辑器</a>
+	    <a href="${request.contextPath}/code/demoEditor" class="item">Demo编辑器</a>
 	    <#--
 	  	<div class="ui simple dropdown item">
 			父菜单下拉 <i class="dropdown icon"></i>
