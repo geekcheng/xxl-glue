@@ -5,13 +5,14 @@ require.config({
 		"source-code-pro" : base_url
 				+ 'static/plugins/ace-plugin/source-code-pro'
 	},
-	waitSeconds : 30
+	waitSeconds : 30,
+	urlArgs: "bust=" + (new Date()).getTime()
 });
 
 define(function(require, exports, module) {
 	"use strict";
 
-	require("source-code-pro");
+	//require("source-code-pro");
 	require("ace/lib/fixoldbrowsers");
 
 	require("ace/multi_select");

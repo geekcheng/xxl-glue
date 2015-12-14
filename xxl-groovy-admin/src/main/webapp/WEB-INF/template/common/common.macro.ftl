@@ -29,7 +29,7 @@
 	    	Groovy
 	  	</a>
 	    <a href="${request.contextPath}/code/codeEditor" class="item">Code编辑器</a>
-	    <a href="${request.contextPath}/code/demoEditor" class="item">Demo编辑器</a>
+	    <a href="${request.contextPath}/code/demoEditor" class="item" target="_blank" >Demo编辑器</a>
 	    <#--
 	  	<div class="ui simple dropdown item">
 			父菜单下拉 <i class="dropdown icon"></i>

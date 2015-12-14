@@ -16,3 +16,9 @@
 	1. ServiceImpl类型的Bean，groovy远程同步即可；
 	2. 生成页面的Bean，groovy远程同步 + ftl数据库存储；
 	
+	步骤：
+	1. 整合Ace Editor
+	2. Code 单模块CRUD
+	3. 模块划分
+	4. 业务重构
+	
