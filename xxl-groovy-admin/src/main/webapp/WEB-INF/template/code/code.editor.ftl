@@ -26,15 +26,22 @@
 
 <!-- editor -->
 <div id="ace-editor"></div>
+<<<<<<< HEAD
 <textarea rows="3" cols="20" id="codeInfo_source" style="display:none;" >${codeInfo.source}</textarea>
+=======
+<textarea rows="3" cols="20" id="codeInfo_source">${codeInfo.source}</textarea>
+>>>>>>> branch 'master' of https://github.com/xuxueli/xxl-groovy.git
 
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>
+<<<<<<< HEAD
 <#if !codeInfo?exists>
 	alert("CODE ID不存在");
 	return;		
 </#if>
 
+=======
+>>>>>>> branch 'master' of https://github.com/xuxueli/xxl-groovy.git
 // 更新字段
 var codeInfo_id = '${codeInfo.id}';
 var codeInfo_source = document.getElementById('codeInfo_source').value;

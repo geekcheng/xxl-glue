@@ -10,9 +10,12 @@ define(function(require, exports, module) {
 	editor.setTheme("ace/theme/idle_fingers");
 	editor.getSession().setMode("ace/mode/groovy");
 	
+<<<<<<< HEAD
 	// 初始化页面
 	editor.setValue(codeInfo_source);
 	
+=======
+>>>>>>> branch 'master' of https://github.com/xuxueli/xxl-groovy.git
 	$("#save").on('click', function(){
 		var code = editor.getSession().getValue();
 		// or session.getValue
@@ -37,5 +40,13 @@ define(function(require, exports, module) {
 			}
 		});
 	});
+<<<<<<< HEAD
+=======
+	
+	// 初始化页面
+	if(codeInfo_id){
+		editor.setValue(codeInfo_source);
+	}
+>>>>>>> branch 'master' of https://github.com/xuxueli/xxl-groovy.git
 	
 });
