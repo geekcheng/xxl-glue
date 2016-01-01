@@ -8,37 +8,20 @@ define(function(require, exports, module) {
 	var ace = require("ace/ace");
 	var editor = ace.edit("ace-editor");
 	editor.setTheme("ace/theme/idle_fingers");
-	editor.getSession().setMode("ace/mode/javascript");
+	editor.getSession().setMode("ace/mode/groovy");
 	
-	// reset
-	$("#reset").on('click', function(){
-		$.ajax({
-			type : 'POST',
-			url : base_url + 'code/pullCode',
-			data : {'moduleName' : 'demoModele'},
-			dataType : "json",
-			success : function(data){
-				if (data.code == 200) {
-					editor.setValue(data.returnContent);
-					// or session.setValue
-				} else {
-					ComAlert.alert(data.msg);
-				}
-			}
-		});
-	});
-	
-	$("#submit").on('click', function(){
+	$("#save").on('click', function(){
 		var code = editor.getSession().getValue();
 		// or session.getValue
 		console.log(code);
 		
 		$.ajax({
 			type : 'POST',
-			url : base_url + 'code/pushCode',
+			url : base_url + 'code/updateCode',
 			data : {
-				'moduleName' : 'demoModele',
-				'code' : code
+				'id' : codeInfo_id,
+				'source' : code,
+				'remark' : codeInfo_remark
 			},
 			dataType : "json",
 			success : function(data){
@@ -52,7 +35,9 @@ define(function(require, exports, module) {
 		});
 	});
 	
-	// retset init
-	$("#reset").click();
+	// 初始化页面
+	if(codeInfo_id){
+		editor.setValue(codeInfo_source);
+	}
 	
 });
