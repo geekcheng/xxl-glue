@@ -1,3 +1,6 @@
+/**
+ * @author xuxueli 2016-1-1 20:27:22
+ */
 'use strict';
 define(['jquery', 'semantic', 'semantic-ui-modal'], function() {
 	// 闭包 ： 可访问上一层函数作用域里变量的函数，即便上一层函数已经关闭。例如 “计数器困境”

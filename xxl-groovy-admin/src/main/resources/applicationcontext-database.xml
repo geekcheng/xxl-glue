@@ -35,7 +35,7 @@
 		<property name="mapperLocations" value="classpath*:com/xxl/core/model/mapper/*.xml"/>
 	</bean>
     
-    <!-- Template在Junit测试的时候，必须使用scope="prototype"，原因未知 -->
+    <!-- Template when Junit, scope="prototype" -->
     <bean id="sqlSessionTemplate"  class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">  
           <constructor-arg index="0" ref="sqlSessionFactory" />  
     </bean> 

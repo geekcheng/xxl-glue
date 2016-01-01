@@ -20,17 +20,27 @@
 <div class="ui fixed inverted menu">
 	<div class="ui container">
 	    <a href="${request.contextPath}/" class="item">返回</a>
-	    <a href="javascript:;" class="item right" id="reset" >重置</a>
-	    <a href="javascript:;" class="item" id="submit" >提交</a>
-	    
+	    <a href="javascript:;" class="item right" id="save" >保存</a>
     </div>
 </div>
 
 <!-- editor -->
 <div id="ace-editor"></div>
+<textarea rows="3" cols="20" id="codeInfo_source" style="display:none;" >${codeInfo.source}</textarea>
 
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>
+<#if !codeInfo?exists>
+	alert("CODE ID不存在");
+	return;		
+</#if>
+
+// 更新字段
+var codeInfo_id = '${codeInfo.id}';
+var codeInfo_source = document.getElementById('codeInfo_source').value;
+var codeInfo_remark = "${codeInfo.remark}";
+
+// 加载js
 var base_url = '${request.contextPath}/';
 require(['code.editor']);
 </script>

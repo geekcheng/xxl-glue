@@ -5,7 +5,8 @@ require.config({
 		'jquery.validate': ['jquery'],
 		'semantic-ui-modal': ['semantic'],
 		'semantic-ui-form': ['semantic'],
-		'semantic-ui-transition': {deps: ['semantic'], exports: 'semantic-ui-transition' }	// 设置依赖文件和别名
+		'semantic-ui-transition': {deps: ['semantic'], exports: 'semantic-ui-transition' },	// 设置依赖文件和别名
+		'datatables-jquery' : ['jquery']
 	},
     paths: {
         'jquery'					:	'../plugins/jquery/jquery.2.1.4.min',
@@ -16,7 +17,9 @@ require.config({
         'semantic-ui-transition' 	:	'../plugins/semantic-ui/dist/components/transition',
         'semantic-comalert'			:	'../js/semantic-comalert',
         'ace'						:	'../plugins/ace/',						// path支持设置整个目录
-        'source-code-pro'			:	'../plugins/jquery/jquery.2.1.4.min'	// path支持设置单个文件
+        'source-code-pro'			:	'../plugins/jquery/jquery.2.1.4.min',	// path支持设置单个文件
+        'datatables-jquery'			:	'../plugins/datatables/media/js/jquery.dataTables.min',
+        'moment'					:	'../plugins/moment/moment.min',
     },
     waitSeconds : 5,	// TimeOut, 默认7秒
 	urlArgs: "bust=" + (new Date()).getTime()	// 版本号, 防止缓存
