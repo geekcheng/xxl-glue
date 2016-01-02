@@ -1,4 +1,5 @@
-# 动态Bean配置平台：xxl-groovy
+# 动态Bean配置平台：xxl-glue
+	基于JVM的敏捷开发平台，支持动态更新Bean；
 
 	技术积累：
 	1. 整站静态花：freemarker生成html页面文件，写入物理磁盘；【freemarker】

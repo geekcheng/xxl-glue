@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xxl.groovy.example.core.model.CodeInfo;
-import com.xxl.groovy.example.dao.ICodeInfoDao;
+import com.xxl.groovy.core.GlueFactory;
+import com.xxl.groovy.core.GlueLoader;
+import com.xxl.groovy.example.service.IDemoHandler;
 
 @Controller
 public class IndexController {
 	
 	@Resource
-	private ICodeInfoDao codeInfoDao;
+	private GlueLoader dbGlueLoader;
+	@Resource
+	private GlueFactory glueFactory;
 
 	@RequestMapping
 	@ResponseBody
@@ -31,11 +34,19 @@ public class IndexController {
 	@RequestMapping("/code/{name}")
 	@ResponseBody
 	public String code(@PathVariable String name) {
-		String source = null;
-		CodeInfo codeInfo = codeInfoDao.loadCodeByName(name);
-		if (codeInfo!=null) {
-			source = codeInfo.getSource();
-		}
+		String source = dbGlueLoader.load(name);
 		return MessageFormat.format("code name : {0}<hr>{1}", name, source);
 	}
+	
+	@RequestMapping("/glue/{name}")
+	@ResponseBody
+	public String glue(@PathVariable String name) {
+		Object result = null;
+		IDemoHandler handler = (IDemoHandler) glueFactory.loadInstance(name);
+		if (handler!=null) {
+			result = handler.handle(null);
+		}
+		return MessageFormat.format("code name : {0}<hr>{1}", name, result);
+	}
+	
 }
