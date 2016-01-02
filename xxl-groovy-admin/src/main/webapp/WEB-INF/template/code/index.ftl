@@ -26,11 +26,8 @@
 		      	<i class="search icon"></i>
 		      	<input type="text" placeholder="请输入codeName..." id="codeName" >
 		      	<div class="ui teal button" id="searchBtn" >Search</div>
-<<<<<<< HEAD
 		      	
 		      	<div class="ui teal button" id="addBtn" >新增</div>
-=======
->>>>>>> branch 'master' of https://github.com/xuxueli/xxl-groovy.git
 		    </div>
 	    </div>
     </div>

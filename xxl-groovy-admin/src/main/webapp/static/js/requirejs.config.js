@@ -3,6 +3,7 @@ require.config({
 	// 非AMD模块输出，将非标准的AMD模块"垫"成可用的模块
 	shim: {
 		'jquery.validate': ['jquery'],
+		'semantic':['jquery'],
 		'semantic-ui-modal': ['semantic'],
 		'semantic-ui-form': ['semantic'],
 		'semantic-ui-transition': {deps: ['semantic'], exports: 'semantic-ui-transition' },	// 设置依赖文件和别名

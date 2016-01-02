@@ -18,7 +18,7 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery'], function(
 	    "columns": [
 	                { "data": 'id', "bSortable": false, "visible" : true},
 	                { "data": 'name', "bSortable": false},
-	                { "data": 'source', "bSortable": false},
+	                { "data": 'source', "bSortable": false, "visible" : false},
 	                { "data": 'remark', "bSortable": false},
 	                { 
 	                	"data": 'addTime', 
@@ -65,7 +65,7 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery'], function(
                         	 });
                         	 var editUrl = base_url + "code/codeEditor?id=" + row.id;
                         	 var html = '<button type="button" class="yellow ui tiny button" onclick="javascript:window.open(\''+editUrl+'\');">编辑</button>' + 
-                             '<button type="button" class="red ui tiny button" id="delCode_'+ row.id +'" >删除</button>';
+                             '<button type="button" class="red ui tiny button delCode" _id="'+ row.id +'" >删除</button>';
                              return html;
                          }
                      }
@@ -99,6 +99,31 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery'], function(
 	// 搜索按钮
 	$('#searchBtn').on('click', function(){
 		codeTable.fnDraw();
+	});
+	
+	// 删除
+	$('#code_list').on('click', '.delCode', function(){
+		ComAlert.confirm("确定要进行删除记录，该操作不可恢复",
+			function(){
+			 	$.ajax({
+					type : 'POST',
+					url : base_url + '/code/delCode',
+					data : {
+						id : row.id
+					},
+					dataType : "json",
+					success : function(data){
+						if (data.code == 200) {
+							ComAlert.alert("删除成功", function(){
+								codeTable.fnDraw();
+	     					});
+						} else {
+							ComAlert.alert(data.msg);
+						}
+					}
+			 	});
+			}
+		);
 	});
 	 
     return '200';
