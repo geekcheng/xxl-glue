@@ -29,7 +29,7 @@
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>
 var base_url = '${request.contextPath}/';
-require(['index'], function(status) {
+require(['common'], function(status) {
 	console.log(status);
 });
 </script>

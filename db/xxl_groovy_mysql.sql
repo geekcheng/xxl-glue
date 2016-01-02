@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2016-01-01 23:19:53
+Date: 2016-01-02 15:36:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `xxl_groovy_code_info`;
 CREATE TABLE `xxl_groovy_code_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `source` text NOT NULL,
+  `source` text,
   `remark` varchar(255) NOT NULL,
   `add_time` timestamp NULL DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `xxl_groovy_code_log`;
 CREATE TABLE `xxl_groovy_code_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `source` text NOT NULL,
+  `source` text,
   `remark` varchar(255) NOT NULL,
   `add_time` timestamp NULL DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,

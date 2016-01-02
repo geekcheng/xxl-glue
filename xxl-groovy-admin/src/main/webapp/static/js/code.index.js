@@ -1,5 +1,5 @@
 'use strict';
-define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery'], function($, ComAlert, moment ) {
+define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.validate', 'semantic', 'semantic-ui-form', 'semantic-ui-transition'], function($, ComAlert, moment ) {
 	
 	// init date tables
 	var codeTable = $("#code_list").dataTable({
@@ -125,6 +125,66 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery'], function(
 			}
 		);
 	});
-	 
+	
+	// 新增
+	$('#addBtn').on('click', function(){
+		$('#addModal').modal({
+			closable  : false,
+			duration : 100,
+			onApprove : function(){	},
+		    onDeny : function() {	}
+		}).modal('show');
+	});
+	
+	// 新增form
+	$('#addModal .form').form({
+		fields: {
+			name: {
+				identifier  : 'name',
+              	rules: [
+                	{
+                  		type   : 'empty',
+                  		prompt : '请输入“Code名称”'
+                	},
+                	{
+                		type   : 'length[6]',
+                  		prompt : '“Code名称”长度必须超过6位'
+                	}
+              	]
+            },
+            remark: {
+              	identifier  : 'remark',
+              	rules: [
+                	{
+                  		type   : 'empty',
+                  		prompt : '请输入“备注”'
+                	},
+                	{
+                  		type   : 'length[6]',
+                  		prompt : '“备注”长度必须超过6位'
+                	}
+              	]
+			}
+		},
+		onSuccess: function(){
+			$.ajax({
+				type : 'POST',
+				url : base_url + 'code/addCode',
+				data : $("#addModal .form").serialize(),
+				dataType : "json",
+				success : function(data){
+					if (data.code == 200) {
+						ComAlert.alert('保存成功', function(){
+							codeTable.fnDraw();
+						});
+					} else {
+						ComAlert.alert(data.msg);
+					}
+				}
+			});
+			return false;	// 避免默认return true表单提交
+		}
+	});
+	
     return '200';
 });

@@ -20,15 +20,14 @@
 	<@netCommon.commonHeader />
 	
 	<!-- code搜索框 -->
-	<div class="ui five column stackable grid" style="padding: 1em;margin-top: 50px;">
+	<div class="ui column stackable grid" style="padding: 1em;margin-top: 50px;">
 	  	<div class="column">
 			<div class="ui action left icon input">
 		      	<i class="search icon"></i>
 		      	<input type="text" placeholder="请输入codeName..." id="codeName" >
-		      	<div class="ui teal button" id="searchBtn" >Search</div>
-		      	
-		      	<div class="ui teal button" id="addBtn" >新增</div>
+		      	<div class="ui default button" id="searchBtn" >Search</div>
 		    </div>
+	      	<button class="ui teal button" id="addBtn">新增</button>
 	    </div>
     </div>
     
@@ -49,11 +48,39 @@
 	</div>
 	
 	<@netCommon.commonFooter />
+	
+	<!-- code：新增 -->
+	<div class="ui modal" id="addModal" >
+	  	<i class="close icon"></i>
+	  	<div class="header">新增</div>
+	  	<div class="content">
+	    	<form class="ui large form">
+		      	<div class="ui stacked segment2">
+					<div class="field">
+						<div class="ui labeled input">
+					      <a class="ui label">名称</a>
+					      <input type="text" name="name" placeholder="请输入...">
+					    </div>
+					</div>
+					<div class="field">
+						<div class="ui labeled input">
+					      <a class="ui label">备注</a>
+					      <input type="text" name="remark" placeholder="请输入...">
+					    </div>
+					</div>
+					<div class="ui button green submit">保存</div>
+		      	</div>
+		      	<div class="ui error message"></div>
+		    </form>
+	  	</div>
+	</div>
+	
+	<!-- code：更新 -->
 
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>
 var base_url = '${request.contextPath}/';
-require(['index']);
+require(['common']);
 require(['code.index']);
 </script>
 </body>
