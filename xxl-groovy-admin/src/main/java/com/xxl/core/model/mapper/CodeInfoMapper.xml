@@ -83,4 +83,10 @@
 		where id = #{id}
 	</select>
 	
+	<select id="loadByName" parameterType="java.lang.String" resultMap="CodeInfo" >
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_groovy_code_info AS t
+		where name = #{name}
+	</select>
+	
 </mapper>

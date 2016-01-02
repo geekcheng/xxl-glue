@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xxl</groupId>
 	<artifactId>xxl-groovy</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<build>
@@ -23,5 +23,7 @@
 
 	<modules>
 		<module>xxl-groovy-admin</module>
+		<module>xxl-groovy-core</module>
+		<module>xxl-groovy-core-example</module>
 	</modules>
 </project>

@@ -58,4 +58,9 @@ public class CodeInfoDaoImpl implements ICodeInfoDao {
 		return sqlSessionTemplate.selectOne("CodeInfoMapper.load", id);
 	}
 
+	@Override
+	public CodeInfo loadCodeByName(String name) {
+		return sqlSessionTemplate.selectOne("CodeInfoMapper.loadByName", name);
+	}
+
 }

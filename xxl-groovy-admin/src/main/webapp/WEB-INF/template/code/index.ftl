@@ -68,14 +68,12 @@
 					      <input type="text" name="remark" placeholder="请输入...">
 					    </div>
 					</div>
-					<div class="ui button green submit">保存</div>
+					<div class="ui button teal submit">保存</div>
 		      	</div>
 		      	<div class="ui error message"></div>
 		    </form>
 	  	</div>
 	</div>
-	
-	<!-- code：更新 -->
 
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>

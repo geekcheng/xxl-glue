@@ -20,7 +20,7 @@ define(function(require, exports, module) {
 		
 		$.ajax({
 			type : 'POST',
-			url : base_url + 'code/updateCode',
+			url : base_url + 'code/updateCodeSource',
 			data : {
 				'id' : codeInfo_id,
 				'source' : code,

@@ -6,7 +6,7 @@
 		<artifactId>xxl-groovy</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>xxl-groovy-admin</artifactId>
+	<artifactId>xxl-groovy-core-example</artifactId>
 	<packaging>war</packaging>
 
 	<properties>
@@ -97,36 +97,12 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- c3p0 -->
+		
+		<!-- xxl-groovy-core -->
 		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.1.2</version>
-		</dependency>
-		<!-- mybatis-spring -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.2.8</version>
-		</dependency>
-		<!-- mysql-connector -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.29</version>
-		</dependency>
-
-		<!-- groovy-all -->
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>2.4.5</version>
+			<groupId>com.xxl</groupId>
+			<artifactId>xxl-groovy-core</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>

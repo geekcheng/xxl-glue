@@ -63,7 +63,7 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.va
                     				}
                         	 	);
                         	 });
-                        	 var editUrl = base_url + "code/codeEditor?id=" + row.id;
+                        	 var editUrl = base_url + "code/codeSourceEditor?id=" + row.id;
                         	 var html = '<button type="button" class="yellow ui tiny button" onclick="javascript:window.open(\''+editUrl+'\');">编辑</button>' + 
                              '<button type="button" class="red ui tiny button delCode" _id="'+ row.id +'" >删除</button>';
                              return html;
@@ -103,13 +103,14 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.va
 	
 	// 删除
 	$('#code_list').on('click', '.delCode', function(){
+		var _id = $(this).attr('_id');
 		ComAlert.confirm("确定要进行删除记录，该操作不可恢复",
 			function(){
 			 	$.ajax({
 					type : 'POST',
 					url : base_url + '/code/delCode',
 					data : {
-						id : row.id
+						id : _id
 					},
 					dataType : "json",
 					success : function(data){
@@ -131,6 +132,7 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.va
 		$('#addModal').modal({
 			closable  : false,
 			duration : 100,
+			allowMultiple: true,
 			onApprove : function(){	},
 		    onDeny : function() {	}
 		}).modal('show');
@@ -149,6 +151,10 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.va
                 	{
                 		type   : 'length[6]',
                   		prompt : '“Code名称”长度必须超过6位'
+                	},
+                	{
+                        type   : 'regExp[/^[a-zA-Z][a-zA-Z0-9_]*$/]',
+                        prompt : '“Code名称”只支持英文字母开头，且只允许由英文字母、数字和下划线组成'
                 	}
               	]
             },
@@ -178,7 +184,9 @@ define(['jquery', 'semantic-comalert', 'moment', 'datatables-jquery', 'jquery.va
 							codeTable.fnDraw();
 						});
 					} else {
-						ComAlert.alert(data.msg);
+						//ComAlert.alert(data.msg);
+						$('#addModal .form').removeClass('success').addClass('error');
+						$('#addModal .form .error').html('<ul class="list"><li>'+ data.msg +'</li></ul>');
 					}
 				}
 			});

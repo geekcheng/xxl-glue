@@ -22,3 +22,9 @@
 	3. 模块划分
 	4. 业务重构
 	
+# 模块划分
+	1、code管理模块[ok]：ACE + Mysql
+	2、code推送模块[ing]：Netty
+	3、code接收模块[ing]：Netty + CMap
+	4、Code嵌入[...]：ImplBeam
+	

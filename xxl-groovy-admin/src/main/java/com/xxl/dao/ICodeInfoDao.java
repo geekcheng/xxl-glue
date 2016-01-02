@@ -16,5 +16,6 @@ public interface ICodeInfoDao {
 	public int update(CodeInfo codeInfo);
 	
 	public CodeInfo loadCode(int id);
+	public CodeInfo loadCodeByName(String name);
 	
 }

@@ -19,7 +19,7 @@
 <!-- tools -->
 <div class="ui fixed inverted menu">
 	<div class="ui container">
-	    <a href="${request.contextPath}/" class="item">返回</a>
+	    <a href="javascript:window.opener=null;window.open('','_self');window.close();" class="item" >关闭</a>
 	    <a href="javascript:;" class="item right" id="save" >保存</a>
     </div>
 </div>
