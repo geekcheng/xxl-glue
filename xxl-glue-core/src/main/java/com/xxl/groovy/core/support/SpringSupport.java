@@ -36,7 +36,6 @@ public class SpringSupport implements ApplicationContextAware {
 			
 			Object fieldBean = null;
 			
-			
 			if (AnnotationUtils.getAnnotation(field, Resource.class) != null) {
 				//CommonAnnotationBeanPostProcessor // AutowiredAnnotationBeanPostProcessor
 				fieldBean = applicationContext.getBean(field.getName());		// 暂时只支持，通过 “@Resource”注解注入，根据属性名获取Bean
