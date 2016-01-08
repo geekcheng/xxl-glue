@@ -14,7 +14,7 @@ public class LocalCache implements ICache{
 	} 
 	
 	private static final ConcurrentHashMap<String, Object> cacheMap = new ConcurrentHashMap<String, Object>();
-	private static final int CACHE_TIMEOUT = 5000;
+	private static final long CACHE_TIMEOUT = 5000;
 	
 	private static String makeTimKey(String key){
 		return key.concat("_tim");
@@ -25,7 +25,14 @@ public class LocalCache implements ICache{
 	
 	@Override
 	public boolean set(String key, Object value) {
-		cacheMap.put(makeTimKey(key), System.currentTimeMillis());
+		cacheMap.put(makeTimKey(key), System.currentTimeMillis() + CACHE_TIMEOUT);
+		cacheMap.put(makeDataKey(key), value);
+		return true;
+	}
+	
+	@Override
+	public boolean set(String key, Object value, long timeout) {
+		cacheMap.put(makeTimKey(key), System.currentTimeMillis() + timeout);
 		cacheMap.put(makeDataKey(key), value);
 		return true;
 	}
@@ -33,7 +40,7 @@ public class LocalCache implements ICache{
 	@Override
 	public Object get(String key) {
 		Object tim = cacheMap.get(makeTimKey(key));
-		if (tim != null && System.currentTimeMillis() - Long.parseLong(tim.toString()) <= CACHE_TIMEOUT) {
+		if (tim != null && System.currentTimeMillis() < Long.parseLong(tim.toString())) {
 			return cacheMap.get(makeDataKey(key));
 		}
 		return null;

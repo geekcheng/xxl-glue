@@ -18,22 +18,22 @@ public class GlueFactory {
 	// groovy class loader
 	private GroovyClassLoader groovyClassLoader = new GroovyClassLoader();
 	
+	// glue cache timeout / second
+	private long cacheTimeout = 5000;
+	public void setCacheTimeout(long cacheTimeout) {
+		this.cacheTimeout = cacheTimeout;
+	}
+	
 	// code source loader
 	private GlueLoader glueLoader;
 	public void setGlueLoader(GlueLoader glueLoader) {
 		this.glueLoader = glueLoader;
-	}
-	public GlueLoader getGlueLoader() {
-		return glueLoader;
 	}
 	
 	// spring support
 	private SpringSupport springSupport;
 	public void setSpringSupport(SpringSupport springSupport) {
 		this.springSupport = springSupport;
-	}
-	public SpringSupport getSpringSupport() {
-		return springSupport;
 	}
 	public void fillBeanField(Object instance){
 		if (springSupport!=null) {
@@ -56,7 +56,7 @@ public class GlueFactory {
 			try {
 				Class<?> clazz = groovyClassLoader.parseClass(codeSource);
 				if (clazz!=null) {
-					LocalCache.getInstance().set(cacheClassKey, clazz);
+					LocalCache.getInstance().set(cacheClassKey, clazz, cacheTimeout);
 					logger.info(">>>>>>>>>>>> xxl-glue, fresh class, name:{}", name);
 					return clazz;
 				}
@@ -102,7 +102,7 @@ public class GlueFactory {
 		}
 		Object instance = loadNewInstance(name);
 		if (instance!=null) {
-			LocalCache.getInstance().set(cacheInstanceKey, instance);
+			LocalCache.getInstance().set(cacheInstanceKey, instance, cacheTimeout);
 			logger.info(">>>>>>>>>>>> xxl-glue, fresh instance, name:{}", name);
 			return instance;
 		}
