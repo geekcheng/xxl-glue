@@ -68,7 +68,10 @@
 					      <input type="text" name="remark" placeholder="请输入...">
 					    </div>
 					</div>
-					<div class="ui button teal submit">保存</div>
+					<div class="actions">
+						<div class="ui button labeled icon green submit">保存<i class="checkmark icon"></i></div>
+						<div class="ui button negative">取消</div>
+				    </div>
 		      	</div>
 		      	<div class="ui error message"></div>
 		    </form>
