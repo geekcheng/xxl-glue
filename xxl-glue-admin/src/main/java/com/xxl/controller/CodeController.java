@@ -41,7 +41,7 @@ public class CodeController {
 	@ResponseBody
 	@PermessionLimit
 	public ReturnT<String> delCode(int id){
-		return ReturnT.SUCCESS;
+		return codeService.delete(id);
 	}
 	
 	@PermessionLimit
