@@ -30,7 +30,7 @@
 		<div class="column">
 			<h2 class="ui teal image header">
 				<img src="${request.contextPath}/static/image/logo.png" class="image">
-				<div class="content">登陆您的账号</div>
+				<div class="content">Glue</div>
 		    </h2>
 		    <form class="ui large form" id="loginForm">
 		      	<div class="ui stacked segment">
