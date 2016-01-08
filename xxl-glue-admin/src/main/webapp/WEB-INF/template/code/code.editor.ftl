@@ -11,7 +11,7 @@
 	<@netCommon.commonStyle />
     <style>
     html {height: 100%;width: 100%;overflow: hidden;}
-	body {overflow: hidden;margin: 0;padding: 0;height: 100%;width: 100%;font-size: 12px;font-family: Arial, Helvetica, sans-serif, Tahoma, Verdana, sans-serif;/*background: rgb(14, 98, 165);color: white;*/}
+	body {overflow: hidden;margin: 0;padding: 0;height: 100%;width: 100%;font-size: 12px;font-family: Arial, Helvetica, sans-serif, Tahoma, Verdana, sans-serif;background:black;color: black;}
 	#ace-editor {position: absolute;top: 50px;left: 10px;bottom: 10px;right: 0px;/*background: white;*/}
     </style>
 </head>
@@ -27,6 +27,25 @@
 <!-- editor -->
 <div id="ace-editor"></div>
 <textarea rows="3" cols="20" id="codeInfo_source" style="display:none;" >${codeInfo.source}</textarea>
+
+<!-- code保存提示 -->
+<div class="ui modal" id="CodeSaveTips" >
+	<i class="close icon"></i>
+	<div class="header">是否执行保存操作?</div>
+	<div class="content">
+		<form class="ui large form">
+			<div class="ui labeled input">
+		      	<div class="ui label">备注:</div>
+		      	<input type="text" id="codeInfo_remark" placeholder="请输入备注">
+		    </div>
+		    <div class="ui error message"></div>
+		</form>
+	</div>
+	<div class="actions">
+		<div class="ui negative button">不</div>
+      	<div class="ui positive right labeled icon button">是的<i class="checkmark icon"></i></div>
+    </div>
+</div>
 
 <script src="${request.contextPath}/static/plugins/requirejs/requirejs.2.1.22.min.js" data-main="${request.contextPath}/static/js/requirejs.config" ></script>
 <script>

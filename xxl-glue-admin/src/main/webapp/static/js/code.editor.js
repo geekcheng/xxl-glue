@@ -14,28 +14,50 @@ define(function(require, exports, module) {
 	editor.setValue(codeInfo_source);
 	
 	$("#save").on('click', function(){
-		var code = editor.getSession().getValue();
-		// or session.getValue
-		console.log(code);
 		
-		$.ajax({
-			type : 'POST',
-			url : base_url + 'code/updateCodeSource',
-			data : {
-				'id' : codeInfo_id,
-				'source' : code,
-				'remark' : codeInfo_remark
-			},
-			dataType : "json",
-			success : function(data){
-				if (data.code == 200) {
-					ComAlert.alert('提交成功');
-					// or session.setValue
-				} else {
-					ComAlert.alert(data.msg);
+		$('#CodeSaveTips').modal({
+			closable  : false,
+			duration : 100,
+			onApprove : function() {
+				
+				var codeInfo_remark = $("#codeInfo_remark").val();
+				
+				// remark check
+				$('#CodeSaveTips .form').removeClass('error').addClass('success');
+				if (!codeInfo_remark) {
+					$('#CodeSaveTips .form').removeClass('success').addClass('error');
+					$('#CodeSaveTips .form .error').html('<ul class="list"><li>请输入备注</li></ul>');
+					return false;
 				}
-			}
-		});
+				
+				var code = editor.getSession().getValue();
+				// or session.getValue
+				console.log(code);
+				
+				$.ajax({
+					type : 'POST',
+					url : base_url + 'code/updateCodeSource',
+					data : {
+						'id' : codeInfo_id,
+						'source' : code,
+						'remark' : codeInfo_remark
+					},
+					dataType : "json",
+					success : function(data){
+						if (data.code == 200) {
+							ComAlert.alert('提交成功', function(){
+								window.location.reload();
+							});
+							// or session.setValue
+						} else {
+							ComAlert.alert(data.msg);
+						}
+					}
+				});
+		    }
+		}).modal('show');
+		
+		
 	});
 	
 });
