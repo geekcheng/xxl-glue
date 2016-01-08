@@ -29,6 +29,11 @@ define(function(require, exports, module) {
 					$('#CodeSaveTips .form .error').html('<ul class="list"><li>请输入备注</li></ul>');
 					return false;
 				}
+				if (codeInfo_remark.length < 6) {
+					$('#CodeSaveTips .form').removeClass('success').addClass('error');
+					$('#CodeSaveTips .form .error').html('<ul class="list"><li>备注长度至少为6位</li></ul>');
+					return false;
+				}
 				
 				var code = editor.getSession().getValue();
 				// or session.getValue
