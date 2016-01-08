@@ -22,5 +22,6 @@ public class TestGroovy {
 		Class<IGroovyService> clazz = groovyClassLoader.parseClass(classCode);
 		IGroovyService service = clazz.newInstance();
 		System.out.println(service.execute(null));
+		
 	}
 }
