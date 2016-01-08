@@ -12,7 +12,7 @@ define(['jquery', 'semantic-comalert'], function($, ComAlert) {
 					success : function(data){
 						if (data.code == 200) {
 							ComAlert.alert("注销成功", function(){
-								window.location.href = base_url + "/login";
+								window.location.href = base_url;
 							});
 						} else {
 							alert(data.msg);

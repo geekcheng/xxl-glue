@@ -1,5 +1,5 @@
 <#macro commonStyle>
-  	<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/plugins/semantic-ui/dist/semantic.min.css">
+  	<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/plugins/semantic-ui/dist/semantic.min2.css">
   	<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/plugins/semantic-ui/dist/components/modal.min.css">
   	<style type="text/css">
 	body {
