@@ -17,13 +17,19 @@ import com.xxl.core.result.ReturnT;
 @RequestMapping("/")
 public class IndexController {
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
+	@RequestMapping(value="", method=RequestMethod.GET)
 	@PermessionLimit(login=false)
 	public String loginPage(HttpServletRequest request){
 		if (PermissionInterceptor.ifLogin(request)) {
-			return "redirect:/index";
+			return "redirect:/code/";
 		}
 		return "login";
+	}
+	
+	@RequestMapping("/help")
+	@PermessionLimit
+	public String index(){
+		return "help";
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
@@ -49,12 +55,6 @@ public class IndexController {
 			PermissionInterceptor.logout(request, response);
 		}
 		return ReturnT.SUCCESS;
-	}
-	
-	@RequestMapping
-	@PermessionLimit
-	public String index(){
-		return "index";
 	}
 	
 }
