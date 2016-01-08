@@ -1,10 +1,9 @@
 package com.xxl.groovy.core;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xxl.groovy.core.cache.LocalCache;
 import com.xxl.groovy.core.support.SpringSupport;
 
 import groovy.lang.GroovyClassLoader;
@@ -42,40 +41,22 @@ public class GlueFactory {
 		}
 	}
 	
-	// cache class/object with beat
-	private ConcurrentHashMap<String, Long> classBeatMap = new ConcurrentHashMap<String,Long>();
-	private ConcurrentHashMap<String, Class<?>> classMap = new ConcurrentHashMap<String, Class<?>>();
-	private ConcurrentHashMap<String, Object> instanceMap = new ConcurrentHashMap<String, Object>();
-	
-	// class(source) Map beat check
-	private boolean isBeating(String name){
-		if (classBeatMap.containsKey(name)) {
-			Long beat = classBeatMap.get(name);
-			if (beat!=null && System.currentTimeMillis() - beat < 5 * 1000) {
-				return true;
-			}
-		}
-		return false;
-	}
-	private void beat(String name){
-		classBeatMap.put(name, System.currentTimeMillis());
-	}
-	
 	// load class, 
 	public Class<?> loadClass(String name){
 		if (name==null || name.trim().length()==0) {
 			return null;
 		}
-		if (classMap.containsKey(name) && this.isBeating(name)) {
-			return classMap.get(name);
+		String cacheClassKey = name+"_class";
+		Object cacheClass = LocalCache.getInstance().get(cacheClassKey);
+		if (cacheClass != null) {
+			return (Class<?>) cacheClass;
 		}
 		String codeSource = glueLoader.load(name);
 		if (codeSource!=null && codeSource.trim().length()>0) {
 			try {
 				Class<?> clazz = groovyClassLoader.parseClass(codeSource);
 				if (clazz!=null) {
-					classMap.put(name, clazz);
-					beat(name);
+					LocalCache.getInstance().set(cacheClassKey, clazz);
 					logger.info(">>>>>>>>>>>> xxl-glue, fresh class, name:{}", name);
 					return clazz;
 				}
@@ -98,7 +79,6 @@ public class GlueFactory {
 				Object instance = clazz.newInstance();
 				if (instance!=null) {
 					this.fillBeanField(instance);
-					instanceMap.put(name, instance);
 					return instance;
 				}
 			} catch (InstantiationException e) {
@@ -115,13 +95,15 @@ public class GlueFactory {
 		if (name==null || name.trim().length()==0) {
 			return null;
 		}
-		if (instanceMap.containsKey(name) && this.isBeating(name)) {
-			return instanceMap.get(name);
+		String cacheInstanceKey = name + "_instance";
+		Object cacheClass = LocalCache.getInstance().get(cacheInstanceKey);
+		if (cacheClass!=null) {
+			return cacheClass;
 		}
 		Object instance = loadNewInstance(name);
 		if (instance!=null) {
+			LocalCache.getInstance().set(cacheInstanceKey, instance);
 			logger.info(">>>>>>>>>>>> xxl-glue, fresh instance, name:{}", name);
-			instanceMap.put(name, instance);
 			return instance;
 		}
 		return null;
